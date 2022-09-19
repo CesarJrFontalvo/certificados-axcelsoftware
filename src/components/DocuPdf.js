@@ -18,13 +18,16 @@ const DocuPdf = ({ data }) => {
     return (
       
         <>
-            <div className="container content-center"
+            <div 
          >
                 <Document
                     file="/doc/certificado.pdf"
                     onLoadSuccess={onDocumentLoadSuccess}
                 >
-                    <Page height="500" pageNumber={pageNumber} />
+                    <div className='justify-content-center'>
+
+                    <Page   width='500' pageNumber={pageNumber} />
+                    </div>
                 </Document>
             </div>
         </>

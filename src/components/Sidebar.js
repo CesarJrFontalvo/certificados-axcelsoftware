@@ -1,9 +1,8 @@
-import { DownOutlined } from '@ant-design/icons'
 import React from 'react'
 import SidebarOptions from './SidebarOptions'
 import '../css/sidebar.css'
 import { Button } from 'antd'
-import {Link, useNavigate} from 'react-router-dom';
+import { useNavigate} from 'react-router-dom';
 const Sidebar = () => {
   const navigate = useNavigate();
   return (
@@ -15,7 +14,7 @@ const Sidebar = () => {
         <SidebarOptions src='https://cdn.xxl.thumbs.canstockphoto.fr/image-isol%C3%A9-jaune-arri%C3%A8re-plan-informatique-dossier-blanc-3d-banque-dillustrations_csp10033752.jpg' title='descargar certificado Laboral' />
       </Button>
       <Button  className='boton-sidebar'  >
-        <SidebarOptions src='https://cdn.xxl.thumbs.canstockphoto.fr/image-isol%C3%A9-jaune-arri%C3%A8re-plan-informatique-dossier-blanc-3d-banque-dillustrations_csp10033752.jpg' title='Colilla de pago' />
+        <SidebarOptions src='https://cdn.xxl.thumbs.canstockphoto.fr/image-isol%C3%A9-jaune-arri%C3%A8re-plan-informatique-dossier-blanc-3d-banque-dillustrations_csp10033752.jpg' title='Descargar colilla de pago' />
     
       </Button>
     </div>
