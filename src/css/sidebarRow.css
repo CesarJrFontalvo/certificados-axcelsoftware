@@ -9,7 +9,3 @@
     font-weight: bold;
     font-size: 14px;
 }
-.sidebarRow:hover{
-   background-color: rgb(211 211 211/31%);
-   cursor: pointer;
-}

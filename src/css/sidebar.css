@@ -1,6 +1,14 @@
 .sidebar{
     margin-top: 20;
-    flex: 0.33;
+    /* flex: 0.33; */
     position: sticky;
     top: 0;
+}
+.boton-sidebar{
+height: 50px;
+border-radius: 0;
+border: none;
+}
+.boton-sidebar:hover{
+background-color: aliceblue;
 }
