@@ -1,6 +1,13 @@
 .widget{
-    margin-top: 30px;
+    /* margin-top: 30px; */
     margin-right: 10px;
+    height: 100vh;
+    position: sticky;
+    top: 0;
+}
+.menu-lateral{
+    /* margin-top: 30px; */
+    /* margin-right: 10px; */
     height: 100vh;
     position: sticky;
     top: 0;

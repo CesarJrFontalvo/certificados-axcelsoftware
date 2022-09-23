@@ -1,36 +1,20 @@
-import React, { useState } from 'react'
-import { Document, Page, pdfjs } from 'react-pdf';
+import { Card } from "antd"
+const DocuPdf = () => {
 
-
-const url =
-    "https://cors-anywhere.herokuapp.com/http://www.pdf995.com/samples/pdf.pdf";
-
-const DocuPdf = ({ data }) => {
-   
-    const [numPages, setNumPages] = useState(null);
-    const [pageNumber, setPageNumber] = useState(1);
-
-    function onDocumentLoadSuccess({ numPages }) {
-        setNumPages(numPages);
-        setPageNumber(1);
-    }
- 
     return (
-      
-        <>
-            <div 
-         >
-                <Document
-                    file="/doc/certificado.pdf"
-                    onLoadSuccess={onDocumentLoadSuccess}
-                >
-                    <div className='justify-content-center'>
+        <div style={{ position: 'absolute', width: '60%', height: '90%', margin: '20px' }}>
+            <object
+                data="/doc/certificadoBack.pdf"
+                type='application/pdf'
+                width='65%'
+                height='80%'
+            >
+                <Card>
+                    <h1>no hay datos</h1>
+                </Card>
+            </object>
+        </div>
 
-                    <Page   width='500' pageNumber={pageNumber} />
-                    </div>
-                </Document>
-            </div>
-        </>
     )
 }
 

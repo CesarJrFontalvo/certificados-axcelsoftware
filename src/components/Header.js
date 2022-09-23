@@ -2,21 +2,26 @@ import React from 'react'
 import '../css/header.css'
 import {  AppstoreTwoTone, ArrowDownOutlined, BellOutlined, HomeFilled, SearchOutlined, StarFilled, UsergroupDeleteOutlined } from '@ant-design/icons';
 import { Avatar, Button, Image, Tooltip } from 'antd';
+import { useNavigate} from 'react-router-dom';
+
 
 const Header = () => {
+    const navigate =useNavigate();
+
     return (
-        <div className='header mb-1'>
+        <div className='header '>
             <div className='header__left'>
-                <img style={{ width: '40px', borderRadius: '100px' }} src='https://scontent.feoh3-1.fna.fbcdn.net/v/t39.30808-6/291053482_103544055757512_9094859423898683856_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=-HZYu5yHn7kAX9jdh7e&_nc_ht=scontent.feoh3-1.fna&oh=00_AT8lTSz_b_c2D9UoSZffvAGOArbFi7ZxAaT1W6-L89vxNw&oe=6329128D' alt='logo' />
+                <img style={{ width: '45px', borderRadius: '100px' }} src='/logoAxcel.png' alt='logo' />
                 <div className='header__search '>
                     <SearchOutlined />
                     <input type='text' placeholder='Search' />
                 </div>
-
             </div>
 
             <div className='header__middle'>
-                <div className='header__option header__option--active'>
+                <div className='header__option header__option--active'  onClick={()=>{
+                         navigate('/');
+                    }}>
                     <HomeFilled />
                 </div>
                 <div className='header__option'>
@@ -46,9 +51,6 @@ const Header = () => {
                 <Tooltip className='me-2'>
                     <Button type="primary" shape="circle" icon={<ArrowDownOutlined />} />
                 </Tooltip>
-
-
-
             </div>
         </div>
     )
