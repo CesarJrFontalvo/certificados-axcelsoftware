@@ -1,37 +1,45 @@
-import {  Input } from 'antd'
-import React from 'react'
+import { Button, Input } from 'antd'
+import React, { useState } from 'react'
 import DocuPdf from './DocuPdf'
 import axios from 'axios';
 import { UseForm } from '../helpers/UseForm'
 import Swal from 'sweetalert2';
 import { Select } from 'antd';
-import Search from 'antd/lib/input/Search';
 import '../css/feed.css'
+import { SearchOutlined, IdcardTwoTone, BankTwoTone, QuestionCircleTwoTone } from '@ant-design/icons';
 
 const { Option } = Select;
 
 const ViewPdf = () => {
     // const [verPdf, setVerPdf] = useState(true);
+    const [list, setList] = useState('sinSalario');
 
     const [values, handleInputChange] = UseForm({
         cedula: '',
+        dirigido: '',
 
     });
-    const { cedula } = values;
+    const { cedula, dirigido } = values;
+    const onChange = (value) => {
+        setList(value)
+    }
+    const urlDirigidoSalario = `http://localhost:8080/api/usuarios/dirigido-salario/${cedula}`;
+    const urlDirigidoNoSalario = `http://localhost:8080/api/usuarios/dirigido-sinsalario/${cedula}`;
+    const urlNoDirigidoSalario = `http://localhost:8080/api/usuarios/nodirigido-salario/${cedula}`;
+    const urlNoDirigidoNoSalario = `http://localhost:8080/api/usuarios/nodirigido-sinsalario/${cedula}`;
+    const urlNoDirigidoExEmpleado = `http://localhost:8080/api/usuarios/nodirigido-excolaborador/${cedula}`;
+    const urlUpdate = `http://localhost:8080/api/usuarios/${cedula}`;
 
-    const url = 'http://localhost:8080/api/usuarios/';
-    const cc = cedula;
-    const pdp = '/pdp/'
 
-    const getAxios = () => {
-        if (cc === '') {
+    const getPdf = () => {
+        if (values.cedula === '') {
             Swal.fire({
                 icon: 'error',
                 title: 'Oops...',
                 text: 'Ingresa tu cédula!',
-
             })
-        } else {
+        }
+        if (dirigido && list === 'completo') {
             Swal.fire({
                 title: 'Realizar la consulta ?',
                 text: "Puedes revisar tu certificado en el botón ver PDF",
@@ -40,14 +48,93 @@ const ViewPdf = () => {
                 confirmButtonColor: '#3085d6',
                 cancelButtonColor: '#d33',
                 confirmButtonText: 'Si'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    // event.preventDefault();
-                    axios.get(url + cc + pdp)
+            }).then(async (confir) => {
+                if (confir.isConfirmed) {
+                    await axios.put(urlUpdate, {
+                        dirigido
+                    })
                         .then(result => {
-                            console.log(result)
+                            axios.get(urlDirigidoSalario)
                         }).catch(console.log)
-                        // setVerPdf()
+                    // setVerPdf()
+                }
+            })
+        }
+        if (dirigido && list === 'sinSalario') {
+            Swal.fire({
+                title: 'Realizar la consulta ?',
+                text: "Puedes revisar tu certificado en el botón ver PDF",
+                icon: 'success',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Si'
+            }).then(async (confir) => {
+                if (confir.isConfirmed) {
+                    await axios.put(urlUpdate, {
+                        dirigido
+                    })
+                        .then(result => {
+                            axios.get(urlDirigidoNoSalario)
+                        }).catch(console.log)
+                    // setVerPdf()
+                }
+            })
+        }
+        if (list === 'completo' && dirigido === '') {
+            Swal.fire({
+                title: 'Realizar la consulta ?',
+                text: "Puedes revisar tu certificado en el botón ver PDF",
+                icon: 'success',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Si'
+            }).then(async (confir) => {
+                if (confir.isConfirmed) {
+                    await axios.get(urlNoDirigidoSalario)
+                        .then(result => {
+                            // axios.get(urlDirigidoSalario)
+                        }).catch(console.log)
+                    // setVerPdf()
+                }
+            })
+        }
+        if (list === 'sinSalario' && dirigido === '' && cedula !== '') {
+            Swal.fire({
+                title: 'Realizar la consulta ?',
+                text: "Puedes revisar tu certificado en el botón ver PDF",
+                icon: 'success',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Si'
+            }).then(async (confir) => {
+                if (confir.isConfirmed) {
+                    await axios.get(urlNoDirigidoNoSalario)
+                        .then(result => {
+                            // axios.get(urlDirigidoSalario)
+                        }).catch(console.log)
+                    // setVerPdf()
+                }
+            })
+        }
+        if (list === 'ex' && cedula !== '') {
+            Swal.fire({
+                title: 'Realizar la consulta ?',
+                text: "Puedes revisar tu certificado en el botón ver PDF",
+                icon: 'success',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Si'
+            }).then(async (confir) => {
+                if (confir.isConfirmed) {
+                    await axios.get(urlNoDirigidoExEmpleado)
+                        .then(result => {
+                            // axios.get(urlDirigidoSalario)
+                        }).catch(console.log)
+                    // setVerPdf()
                 }
             })
         }
@@ -55,37 +142,42 @@ const ViewPdf = () => {
     return (
         <>
             <nav className='d-flex mt-2 p-3 card view-pdd'>
-                <form onSubmit={getAxios}>
+                <form onSubmit={getPdf}>
                     <div className='row'>
-                        <div className='col-4'>
-                            <Search   onSearch={getAxios} enterButton  onChange={handleInputChange} name='cedula' placeholder="Ingresa tu cédula" className='mx-2' />
+                        <label htmlFor="cedula_id" className="form-label mb-1">
+                            Ingresa tu cédula
+                        </label>
+                        <div className='cedula col-3 '>
+                            <Input type='number' id='cedula_id' prefix={<IdcardTwoTone />} onChange={handleInputChange} name='cedula' placeholder="Ingresar cédula" />
                         </div>
 
-                        <div className='col-4'>
-                            <Input onChange={handleInputChange} name='dirigido' placeholder="Dirigido a" className='mx-2' />
+                        <div className='col-3'>
+                            <Input onChange={handleInputChange} prefix={<BankTwoTone />} name='dirigido' placeholder="Dirigido a" />
                         </div>
 
-                        <div className='col-4'>
+                        <div className='col-3'>
                             <Select
-                             style={{ width: '100%' }} 
+                                prefix={<QuestionCircleTwoTone />}
+                                style={{ width: '100%' }}
                                 placeholder="Select..."
                                 optionFilterProp="children"
-                                // onChange={onChange}
-                                // onSearch={onSearch}
+                                onChange={onChange}
                                 filterOption={(input, option) => option.children.toLowerCase().includes(input.toLowerCase())}>
-                                <Option value="Completo">Completo</Option>
-                                <Option value="Flexible">Flexible</Option>
-                                <Option value="Sin salario">Sin salario</Option>
+                                <Option value="completo">Completo</Option>
+                                <Option value="ex">Ex empleado</Option>
+                                <Option value="sinSalario">Sin salario</Option>
                             </Select>
                         </div>
+                        <div className='col-3'>
+                            <Button type="primary" size='xs' icon={<SearchOutlined />} onClick={() => {
+                                // setVerPdf(!verPdf)
+                                getPdf();
+                            }}>
+                                Consultar
+                            </Button>
+                        </div>
                     </div>
-{/* 
-                    <Button type="primary" shape="round" size='xs' icon={<SearchOutlined />} className='m-3 text-center' onClick={() => {
-                        // setVerPdf(!verPdf)
-                        getAxios();
-                    }}>
-                        Consultar
-                    </Button> */}
+
 
                     {/* <Button type="primary" shape="round" size='xs' icon={<EyeInvisibleFilled />} className='m-3 text-center' target='blank' onClick={() => {
                         setVerPdf(!verPdf)
@@ -97,7 +189,7 @@ const ViewPdf = () => {
             </nav>
 
             <div className='container-fluid'>
-            <DocuPdf />
+                <DocuPdf />
                 {/* {verPdf ? <DocuPdf /> : <PlantillaPdf />} */}
             </div>
         </>

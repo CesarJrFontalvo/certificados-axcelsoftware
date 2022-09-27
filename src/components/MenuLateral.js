@@ -17,7 +17,7 @@ const MenuLateral = () => {
     }
 
     const items = [
-        getItem('Descargar certificado', 'sub2', <AppstoreOutlined />, [
+        getItem('Descargar certificado', 'sub1', <AppstoreOutlined />, [
             getItem('Certificado laboral', 'home-pdf', <FilePdfTwoTone twoToneColor="red" />),
             getItem('Certificado de pago', 'view-pdf', <FilePdfTwoTone twoToneColor="red" />),
             getItem('Impuestos', 'inpuestos', <FilePdfTwoTone twoToneColor="red" />),
@@ -40,6 +40,7 @@ const MenuLateral = () => {
                 mode="inline"
                 onClick={onClick}
                 style={{width: 256,}}
+                defaultOpenKeys={['sub1']}
                 items={items}
             />
         </div>

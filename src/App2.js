@@ -8,7 +8,7 @@ function App2() {
     <div className="App">
       <div className="app__body row  ">
       
-        <div className="col-12 col-md-3 col-lg-3 " style={{ marginTop: '10px' }}> <MenuLateral /></div>
+        <div className="col-12 col-md-3 col-lg-3 " style={{ marginTop: '10px'}}> <MenuLateral /></div>
         <div className="col-12 col-md-3 col-lg-6" > <ViewPdf /></div>
         <div className="col-12 col-md-3 col-lg-3  " > <RightSidebar /></div>
       </div>
