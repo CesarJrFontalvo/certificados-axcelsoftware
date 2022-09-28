@@ -1,10 +1,10 @@
 import React from 'react';
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
-import App from '../App';
-import App2 from '../App2';
+import Home from '../view/Home';
 import Header from '../components/Header';
 import Pdf from '../components/Pdf';
-import ViewPdf from '../components/ViewPdf';
+import CertificadoPago from '../view/CertificadoPago';
+import CertificadoLaboral from '../view/CertificadiLaboral';
 
 const AppRouter = () => {
   return (
@@ -13,9 +13,9 @@ const AppRouter = () => {
  <BrowserRouter>
  <Header/>
         <Routes>
-          <Route path="/" element={<App />} />
-          <Route path="/home-pdf" element={<App2 />} />
-          <Route path="/view-pdf" element={<ViewPdf/> }/>
+          <Route path="/" element={<Home />} />
+          <Route path="/certificado-laboral" element={<CertificadoLaboral/>} />
+          <Route path="/certificado-pago" element={<CertificadoPago/> }/>
           <Route path="/pdf" element={<Pdf/> }/>
           <Route path='*' element={<Navigate to="/" />} />
         </Routes>

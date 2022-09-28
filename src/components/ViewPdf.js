@@ -1,3 +1,5 @@
+import { SearchOutlined, IdcardTwoTone, BankTwoTone, QuestionCircleTwoTone } from '@ant-design/icons';
+import { urlDirigidoNoSalario, urlDirigidoSalario, urlNoDirigidoExEmpleado, urlNoDirigidoNoSalario, urlNoDirigidoSalario, urlUpdate } from '../url/url';
 import { Button, Input } from 'antd'
 import React, { useState } from 'react'
 import DocuPdf from './DocuPdf'
@@ -6,7 +8,6 @@ import { UseForm } from '../helpers/UseForm'
 import Swal from 'sweetalert2';
 import { Select } from 'antd';
 import '../css/feed.css'
-import { SearchOutlined, IdcardTwoTone, BankTwoTone, QuestionCircleTwoTone } from '@ant-design/icons';
 
 const { Option } = Select;
 
@@ -23,14 +24,7 @@ const ViewPdf = () => {
     const onChange = (value) => {
         setList(value)
     }
-    const urlDirigidoSalario = `http://localhost:8080/api/usuarios/dirigido-salario/${cedula}`;
-    const urlDirigidoNoSalario = `http://localhost:8080/api/usuarios/dirigido-sinsalario/${cedula}`;
-    const urlNoDirigidoSalario = `http://localhost:8080/api/usuarios/nodirigido-salario/${cedula}`;
-    const urlNoDirigidoNoSalario = `http://localhost:8080/api/usuarios/nodirigido-sinsalario/${cedula}`;
-    const urlNoDirigidoExEmpleado = `http://localhost:8080/api/usuarios/nodirigido-excolaborador/${cedula}`;
-    const urlUpdate = `http://localhost:8080/api/usuarios/${cedula}`;
-
-
+   
     const getPdf = () => {
         if (values.cedula === '') {
             Swal.fire({
@@ -42,7 +36,7 @@ const ViewPdf = () => {
         if (dirigido && list === 'completo') {
             Swal.fire({
                 title: 'Realizar la consulta ?',
-                text: "Puedes revisar tu certificado en el botón ver PDF",
+                text: "Click en Si para revisar tu certificado PDF",
                 icon: 'success',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
@@ -50,11 +44,11 @@ const ViewPdf = () => {
                 confirmButtonText: 'Si'
             }).then(async (confir) => {
                 if (confir.isConfirmed) {
-                    await axios.put(urlUpdate, {
+                    await axios.put(urlUpdate+cedula, {
                         dirigido
                     })
                         .then(result => {
-                            axios.get(urlDirigidoSalario)
+                            axios.get(urlDirigidoSalario+cedula)
                         }).catch(console.log)
                     // setVerPdf()
                 }
@@ -63,7 +57,7 @@ const ViewPdf = () => {
         if (dirigido && list === 'sinSalario') {
             Swal.fire({
                 title: 'Realizar la consulta ?',
-                text: "Puedes revisar tu certificado en el botón ver PDF",
+                text: "Click en Si para revisar tu certificado PDF",
                 icon: 'success',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
@@ -71,11 +65,11 @@ const ViewPdf = () => {
                 confirmButtonText: 'Si'
             }).then(async (confir) => {
                 if (confir.isConfirmed) {
-                    await axios.put(urlUpdate, {
+                    await axios.put(urlUpdate+cedula, {
                         dirigido
                     })
                         .then(result => {
-                            axios.get(urlDirigidoNoSalario)
+                            axios.get(urlDirigidoNoSalario+cedula)
                         }).catch(console.log)
                     // setVerPdf()
                 }
@@ -84,7 +78,7 @@ const ViewPdf = () => {
         if (list === 'completo' && dirigido === '') {
             Swal.fire({
                 title: 'Realizar la consulta ?',
-                text: "Puedes revisar tu certificado en el botón ver PDF",
+                text: "Click en Si para revisar tu certificado PDF",
                 icon: 'success',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
@@ -92,7 +86,7 @@ const ViewPdf = () => {
                 confirmButtonText: 'Si'
             }).then(async (confir) => {
                 if (confir.isConfirmed) {
-                    await axios.get(urlNoDirigidoSalario)
+                    await axios.get(urlNoDirigidoSalario+cedula)
                         .then(result => {
                             // axios.get(urlDirigidoSalario)
                         }).catch(console.log)
@@ -103,7 +97,7 @@ const ViewPdf = () => {
         if (list === 'sinSalario' && dirigido === '' && cedula !== '') {
             Swal.fire({
                 title: 'Realizar la consulta ?',
-                text: "Puedes revisar tu certificado en el botón ver PDF",
+                text: "Click en Si para revisar tu certificado PDF",
                 icon: 'success',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
@@ -111,7 +105,7 @@ const ViewPdf = () => {
                 confirmButtonText: 'Si'
             }).then(async (confir) => {
                 if (confir.isConfirmed) {
-                    await axios.get(urlNoDirigidoNoSalario)
+                    await axios.get(urlNoDirigidoNoSalario+cedula)
                         .then(result => {
                             // axios.get(urlDirigidoSalario)
                         }).catch(console.log)
@@ -122,7 +116,7 @@ const ViewPdf = () => {
         if (list === 'ex' && cedula !== '') {
             Swal.fire({
                 title: 'Realizar la consulta ?',
-                text: "Puedes revisar tu certificado en el botón ver PDF",
+                text: "Click en Si para revisar tu certificado PDF",
                 icon: 'success',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
@@ -130,7 +124,7 @@ const ViewPdf = () => {
                 confirmButtonText: 'Si'
             }).then(async (confir) => {
                 if (confir.isConfirmed) {
-                    await axios.get(urlNoDirigidoExEmpleado)
+                    await axios.get(urlNoDirigidoExEmpleado+cedula)
                         .then(result => {
                             // axios.get(urlDirigidoSalario)
                         }).catch(console.log)
@@ -142,7 +136,7 @@ const ViewPdf = () => {
     return (
         <>
             <nav className='d-flex mt-2 p-3 card view-pdd'>
-                <form onSubmit={getPdf}>
+                <form >
                     <div className='row'>
                         <label htmlFor="cedula_id" className="form-label mb-1">
                             Ingresa tu cédula

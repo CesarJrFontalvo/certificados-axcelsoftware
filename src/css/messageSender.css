@@ -50,3 +50,10 @@
  .messangerOptions p{
     margin-left: 10px;
  }
+
+ @media (max-width:600px) {
+   .messangerOptions p{
+      display: none;
+   }
+    
+}

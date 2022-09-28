@@ -1,12 +1,11 @@
-import { Card } from "antd"
-import '../css/docuPdf.css'
+import { Card } from 'antd'
+import React from 'react'
 
-const DocuPdf = () => {
-
-    return (
-        <div className="docuPdf" >
+const DocuPago = () => {
+  return (
+    <div className="docuPdf" >
             <object
-                data="/doc/certificadoBack.pdf"
+                data="/doc/certificadoPago.pdf"
                 type='application/pdf'
                 width='75%'
                 height='90%'
@@ -17,8 +16,7 @@ const DocuPdf = () => {
                 </Card>
             </object>
         </div>
-
-    )
+  )
 }
 
-export default DocuPdf
+export default DocuPago

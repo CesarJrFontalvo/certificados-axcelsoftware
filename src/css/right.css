@@ -1,16 +1,22 @@
-.widget{
-    /* margin-top: 30px; */
-    /* margin-right: 10px; */
-    /* height: 100vh; */
+.widget {
     position: fixed;
-    /* top: 0; */
-    /* display: none; */
 }
-.menu-lateral{
 
+.menu-lateral {
     height: 100vh;
     position: fixed;
-    
-    /* display: none; */
-    /* top: 20px; */
+    width: 256px
+}
+
+@media (max-width:900px) {
+    .menu-lateral {
+        height: 100vh;
+        /* position: fixed; */
+        width: 100%;
+    }
+
+    .widget {
+
+        display: none;
+    }
 }

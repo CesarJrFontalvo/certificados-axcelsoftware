@@ -1,12 +1,12 @@
 import React from 'react'
 import '../css/header.css'
-import {  AppstoreTwoTone, ArrowDownOutlined, BellOutlined, HomeFilled, SearchOutlined, StarFilled, UsergroupDeleteOutlined } from '@ant-design/icons';
+import { AppstoreOutlined, AppstoreTwoTone, ArrowDownOutlined, BellOutlined, HomeFilled, SearchOutlined,  UsergroupDeleteOutlined } from '@ant-design/icons';
 import { Avatar, Button, Image, Tooltip } from 'antd';
-import { useNavigate} from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 
 const Header = () => {
-    const navigate =useNavigate();
+    const navigate = useNavigate();
 
     return (
         <div className='header '>
@@ -19,13 +19,17 @@ const Header = () => {
             </div>
 
             <div className='header__middle'>
-                <div className='header__option header__option--active'  onClick={()=>{
+                <div className='header__option'>
+                    <AppstoreOutlined />
+                    {/* <MenuLateral/> */}
+                </div>
+                <div className='header__option '  onClick={()=>{
                          navigate('/');
                     }}>
+                        <div className='active-buttom'>
+
+                        </div>
                     <HomeFilled />
-                </div>
-                <div className='header__option'>
-                    <StarFilled />
                 </div>
                 <div className='header__option'>
                     <UsergroupDeleteOutlined />
@@ -53,6 +57,7 @@ const Header = () => {
                 </Tooltip>
             </div>
         </div>
+     
     )
 }
 

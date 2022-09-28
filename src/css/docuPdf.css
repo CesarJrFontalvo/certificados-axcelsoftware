@@ -1,0 +1,16 @@
+.docuPdf{
+    position: absolute;
+    margin-top: 20px;
+    width: 65%;
+    margin-left: -10px;
+    height: 90%;
+}
+@media (max-width:600px) {
+    .docuPdf{
+        position: absolute;
+        margin-top: 20px;
+        width: 130%;
+        margin-left: -10px;
+        height: 90%;
+    }
+}
