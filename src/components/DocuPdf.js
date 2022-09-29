@@ -6,7 +6,7 @@ const DocuPdf = () => {
     return (
         <div className="docuPdf" >
             <object
-                data="/doc/certificadoBack.pdf"
+                data="/doc/certificadoLaboral.pdf"
                 type='application/pdf'
                 width='75%'
                 height='90%'

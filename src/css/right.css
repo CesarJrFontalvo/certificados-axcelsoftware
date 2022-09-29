@@ -5,18 +5,32 @@
 .menu-lateral {
     height: 100vh;
     position: fixed;
-    width: 256px
+    /* width: 290px */
 }
+.menu-lateral menu {
+    height: 100vh;
+    /* position: fixed; */
+    width: 100%;
+} 
+@media (max-width:600px) {
+    .menu-lateral {
+        height: 100vh;
+        /* position: fixed; */
+        width: 97%;
+    }
 
+    .widget {
+        display: none;
+    }
+}
 @media (max-width:900px) {
     .menu-lateral {
         height: 100vh;
         /* position: fixed; */
-        width: 100%;
+        width: 99%;
     }
 
     .widget {
-
         display: none;
     }
 }

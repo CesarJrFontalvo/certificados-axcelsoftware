@@ -8,7 +8,7 @@ function App() {
     <div className="App">
       <div className="app__body row  ">
       
-        <div className="menu-responsive col-12 col-md-12 col-lg-3" style={{ marginTop: '10px'}} > <MenuLateral /></div>
+        <div className="col-12 col-md-12 col-lg-3" style={{ marginTop: '10px'}} > <MenuLateral /></div>
         <div className="col-12 col-md-12 col-lg-6" > <Feed /></div>
         <div className="col-12 col-md-12 col-lg-3" > <RightSidebar /></div>
       </div>

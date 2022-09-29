@@ -37,9 +37,10 @@ const MenuLateral = () => {
 
         <div className='menu-lateral'>
             <Menu
+            className='menu'
                 mode="inline"
                 onClick={onClick}
-                style={{width: 256,}}
+                // style={{width: 256}}
                 // defaultOpenKeys={['sub1']}
                 items={items}
             />
