@@ -1,4 +1,4 @@
-import { Card } from 'antd'
+import { Button, Card } from 'antd'
 import React from 'react'
 
 const DocuPago = () => {
@@ -11,8 +11,13 @@ const DocuPago = () => {
                 height='90%'
                 
             >
-                <Card>
-                    <h1>no hay datos</h1>
+             <Card className="d-flex mx-2 p-3 col-12 col-md-10 col-lg-8 view-pdd">
+                    <h3>En dispositivos mobiles la previsualización no está disponible, click en descargar para ver tu PDF</h3>
+                    <a href='/doc/certificadoPago.pdf' download='certificadoPago.pdf'>
+                        <Button type="primary" className='m-3 text-center' >
+                            descargar PDF
+                        </Button>
+                    </a>
                 </Card>
             </object>
         </div>

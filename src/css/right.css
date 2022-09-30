@@ -1,21 +1,26 @@
-.widget {
+/* .widget {
     position: fixed;
-}
+} */
 
 .menu-lateral {
+    z-index: 1;
     height: 100vh;
-    position: fixed;
+    /* position: fixed; */
     width: 16rem;
     
 }
 .menu-lateral menu {
+  
+    border: 1px solid #ccc;
     height: 100vh;
     /* position: fixed; */
     /* width: 100%; */
 } 
+
+
 @media (max-width:991px) {
     .menu-lateral {
-        height: 100vh;
+        height: 9rem;
         width: 99%;
     }
 
@@ -25,11 +30,15 @@
 }
 @media (max-width:600px) {
     .menu-lateral {
-        height: 100vh;
-        width: 97%;
+        height: 9rem;
+        width: 100%; 
     }
 
     .widget {
         display: none;
+    }
+    .menu-lateral ul {
+        border: 0.1px solid #ccc;
+        border-radius: 4px;
     }
 }

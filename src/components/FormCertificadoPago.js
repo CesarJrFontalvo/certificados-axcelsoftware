@@ -21,13 +21,13 @@ const FormCertificadoPago = () => {
                         <label htmlFor="cedula_id" className="form-label mb-1">
                             Ingresa tu cédula
                         </label>
-                        <div className='cedula col-4 '>
+                        <div className='cedula col-12 col-md-3 col-lg-4 item '>
                             <Input type='number' id='cedula_id' prefix={<IdcardTwoTone />} name='cedula' placeholder="Ingresar cédula" />
                         </div>
-                        <div className='col-4'>
+                        <div className='col-12 col-md-3 col-lg-4 item'>
                             <DatePicker disabledDate={disabledDate} onChange={onChange} picker="month" placeholder='Selecciona el mes' style={{ width: '100%' }} />
                         </div>
-                        <div className='col-4'>
+                        <div className='col-12 col-md-3 col-lg-4 item'>
                             <Button type="primary" size='xs' icon={<SearchOutlined />} onClick={() => {
                                 // getPdf();
                             }}>

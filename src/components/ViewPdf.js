@@ -148,15 +148,15 @@ const ViewPdf = () => {
                         <label htmlFor="cedula_id" className="form-label mb-1">
                             Ingresa tu cédula
                         </label>
-                        <div className='cedula col-3 '>
+                        <div className=' col-12 col-md-3 col-lg-3 item'>
                             <Input type='number' id='cedula_id' prefix={<IdcardTwoTone />} onChange={handleInputChange} name='cedula' placeholder="Ingresar cédula" />
                         </div>
 
-                        <div className='col-3'>
+                        <div className='col-12 col-md-3 col-lg-3  item'>
                             <Input onChange={handleInputChange} prefix={<BankTwoTone />} name='dirigido' placeholder="Dirigido a" />
                         </div>
 
-                        <div className='col-3'>
+                        <div className='col-12 col-md-3 col-lg-3  item'>
                             <Select
                                 prefix={<QuestionCircleTwoTone />}
                                 style={{ width: '100%' }}
@@ -169,7 +169,7 @@ const ViewPdf = () => {
                                 <Option value="sinSalario">Sin salario</Option>
                             </Select>
                         </div>
-                        <div className='col-3'>
+                        <div className='col-12 col-md-3 col-lg-3  item'>
                             <Button type="primary" size='xs' icon={<SearchOutlined />} onClick={() => {
                                 // setVerPdf(!verPdf)
                                 getPdf();

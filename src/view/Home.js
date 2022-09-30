@@ -6,11 +6,11 @@ function App() {
 
   return (
     <div className="App">
-      <div className="app__body row  ">
+      <div className="contenedor  ">
       
-        <div className="col-12 col-md-12 col-lg-3" style={{ marginTop: '10px'}} > <MenuLateral /></div>
-        <div className="col-12 col-md-12 col-lg-6" > <Feed /></div>
-        <div className="col-12 col-md-12 col-lg-3" > <RightSidebar /></div>
+        <div className="item item1"  style={{ marginTop: '10px'}} > <MenuLateral /></div>
+        <div className="item item2" > <Feed /></div>
+        <div className="item item3" > <RightSidebar /></div>
       </div>
     </div>
   );
