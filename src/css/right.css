@@ -5,29 +5,28 @@
 .menu-lateral {
     height: 100vh;
     position: fixed;
-    /* width: 290px */
+    width: 16rem;
+    
 }
 .menu-lateral menu {
     height: 100vh;
     /* position: fixed; */
-    width: 100%;
+    /* width: 100%; */
 } 
-@media (max-width:600px) {
+@media (max-width:991px) {
     .menu-lateral {
         height: 100vh;
-        /* position: fixed; */
-        width: 97%;
+        width: 99%;
     }
 
     .widget {
         display: none;
     }
 }
-@media (max-width:900px) {
+@media (max-width:600px) {
     .menu-lateral {
         height: 100vh;
-        /* position: fixed; */
-        width: 99%;
+        width: 97%;
     }
 
     .widget {

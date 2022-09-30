@@ -13,7 +13,7 @@ const { Option } = Select;
 
 const ViewPdf = () => {
     // const [verPdf, setVerPdf] = useState(true);
-    const [list, setList] = useState('sinSalario');
+    const [list, setList] = useState('');
 
     const [values, handleInputChange] = UseForm({
         cedula: '',
@@ -24,13 +24,20 @@ const ViewPdf = () => {
     const onChange = (value) => {
         setList(value)
     }
-   
+   console.log(list)
     const getPdf = () => {
         if (values.cedula === '') {
             Swal.fire({
                 icon: 'error',
                 title: 'Oops...',
                 text: 'Ingresa tu cédula!',
+            })
+        }
+        if (list ==='') {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Selecciona una opción de la lista!',
             })
         }
         if (dirigido && list === 'completo') {
