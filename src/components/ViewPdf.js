@@ -1,4 +1,4 @@
-import { SearchOutlined, IdcardTwoTone, BankTwoTone, QuestionCircleTwoTone } from '@ant-design/icons';
+import { SearchOutlined, IdcardTwoTone, BankTwoTone } from '@ant-design/icons';
 import { urlDirigidoNoSalario, urlDirigidoSalario, urlNoDirigidoExEmpleado, urlNoDirigidoNoSalario, urlNoDirigidoSalario, urlUpdate } from '../url/url';
 import { Button, Input } from 'antd'
 import React, { useState } from 'react'
@@ -18,29 +18,33 @@ const ViewPdf = () => {
     const [values, handleInputChange] = UseForm({
         cedula: '',
         dirigido: '',
-
+        numHorasExDiu:0,
+        numHorasExNoc:0
     });
-    const { cedula, dirigido } = values;
+    const { cedula ,dirigido,numHorasExDiu,numHorasExNoc} = values;
     const onChange = (value) => {
         setList(value)
     }
-   console.log(list)
     const getPdf = () => {
-        if (values.cedula === '') {
+        if ((list ==='' && cedula === '') || (list ==='' && cedula !== '')) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Selecciona una opción de la lista despleglable !',
+                backdrop: ` rgb(173,123,116,0.6)`,
+                position:'top'
+            })
+        }
+        if (cedula === '') {
             Swal.fire({
                 icon: 'error',
                 title: 'Oops...',
                 text: 'Ingresa tu cédula!',
+                backdrop: ` rgb(173,123,116,0.6) `,
+                position:'top'
             })
         }
-        if (list ==='') {
-            Swal.fire({
-                icon: 'error',
-                title: 'Oops...',
-                text: 'Selecciona una opción de la lista!',
-            })
-        }
-        if (dirigido && list === 'completo') {
+        if (dirigido && list === 'completo' && cedula !== '') {
             Swal.fire({
                 title: 'Realizar la consulta ?',
                 text: "Click en Si para revisar tu certificado PDF",
@@ -48,11 +52,15 @@ const ViewPdf = () => {
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
                 cancelButtonColor: '#d33',
-                confirmButtonText: 'Si'
+                confirmButtonText: 'Si',
+                backdrop: `rgb(143,159,134,0.7)`,
+                position:'top'
             }).then(async (confir) => {
                 if (confir.isConfirmed) {
                     await axios.put(urlUpdate+cedula, {
-                        dirigido
+                        dirigido,
+                        numHorasExDiu, 
+                        numHorasExNoc
                     })
                         .then(result => {
                             axios.get(urlDirigidoSalario+cedula)
@@ -61,7 +69,7 @@ const ViewPdf = () => {
                 }
             })
         }
-        if (dirigido && list === 'sinSalario') {
+        if (dirigido && list === 'sinSalario' && cedula !== '') {
             Swal.fire({
                 title: 'Realizar la consulta ?',
                 text: "Click en Si para revisar tu certificado PDF",
@@ -69,11 +77,15 @@ const ViewPdf = () => {
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
                 cancelButtonColor: '#d33',
-                confirmButtonText: 'Si'
+                confirmButtonText: 'Si',
+                backdrop: `rgb(143,159,134,0.7)`,
+                position:'top'
             }).then(async (confir) => {
                 if (confir.isConfirmed) {
                     await axios.put(urlUpdate+cedula, {
-                        dirigido
+                        dirigido,
+                        numHorasExDiu, 
+                        numHorasExNoc
                     })
                         .then(result => {
                             axios.get(urlDirigidoNoSalario+cedula)
@@ -82,7 +94,7 @@ const ViewPdf = () => {
                 }
             })
         }
-        if (list === 'completo' && dirigido === '') {
+        if (list === 'completo' && dirigido === '' && cedula !== '') {
             Swal.fire({
                 title: 'Realizar la consulta ?',
                 text: "Click en Si para revisar tu certificado PDF",
@@ -90,7 +102,9 @@ const ViewPdf = () => {
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
                 cancelButtonColor: '#d33',
-                confirmButtonText: 'Si'
+                confirmButtonText: 'Si',
+                backdrop: `rgb(143,159,134,0.7)`,
+                position:'top'
             }).then(async (confir) => {
                 if (confir.isConfirmed) {
                     await axios.get(urlNoDirigidoSalario+cedula)
@@ -109,7 +123,9 @@ const ViewPdf = () => {
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
                 cancelButtonColor: '#d33',
-                confirmButtonText: 'Si'
+                confirmButtonText: 'Si',
+                backdrop: `rgb(143,159,134,0.7)`,
+                position:'top'
             }).then(async (confir) => {
                 if (confir.isConfirmed) {
                     await axios.get(urlNoDirigidoNoSalario+cedula)
@@ -128,7 +144,9 @@ const ViewPdf = () => {
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
                 cancelButtonColor: '#d33',
-                confirmButtonText: 'Si'
+                confirmButtonText: 'Si',
+                backdrop: `rgb(143,159,134,0.7)`,
+                position:'top'
             }).then(async (confir) => {
                 if (confir.isConfirmed) {
                     await axios.get(urlNoDirigidoExEmpleado+cedula)
@@ -158,7 +176,6 @@ const ViewPdf = () => {
 
                         <div className='col-12 col-md-3 col-lg-3  item'>
                             <Select
-                                prefix={<QuestionCircleTwoTone />}
                                 style={{ width: '100%' }}
                                 placeholder="Select..."
                                 optionFilterProp="children"
