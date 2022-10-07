@@ -1,6 +1,6 @@
 import { Button, Card } from "antd"
 import '../css/docuPdf.css'
-
+import React from 'react';
 
 const DocuPdf = () => {
 

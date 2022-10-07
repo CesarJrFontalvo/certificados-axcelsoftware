@@ -24,7 +24,7 @@ const MenuLateral = () => {
 
         ]),
         getItem('Navigation Three', 'sub4', <SettingOutlined />, [
-            getItem('Option 9', '9'),
+            getItem('Certificado laboral', 'pdf'),
             getItem('Option 10', '10'),
 
         ]),
